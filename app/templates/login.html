@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>请登录……^_^</title>
+    <link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet">
+</head>
+<body>
+<div id="loginDiv">
+    <form action="{{ url_for('login') }}" method="post" id="form">
+        {{ form.hidden_tag() }}
+        <h1 id="loginMsg">登录</h1>
+        <p>用户 {{ form.username(size=32) }}</p>
+        {% for error in form.username.errors %}
+            <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+        <p>密码 {{ form.password(size=32) }}</p>
+        {% for error in form.password.errors %}
+            <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+        <div id="subDiv">
+            {{ form.submit(class="button") }}
+            <input type="reset" class="button" value="reset">&nbsp;&nbsp;&nbsp;
+            <a href="{{ url_for('register') }}">没有账号？点击注册</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

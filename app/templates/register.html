@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎注册</title>
+    <link href="{{ url_for('static', filename='css/register.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="form-div">
+    <div class="reg-content">
+        <h1>欢迎注册</h1>
+        <span>已有帐号？</span> <a href="{{ url_for('login') }}">登录</a>
+    </div>
+    <form id="reg-form" action="{{ url_for('register') }}" method="post">
+        {{ form.hidden_tag() }}
+        <table>
+            <tr>
+                <td>用户名</td>
+                <td class="inputs">
+                    {{ form.username(size=32) }}
+                    <br>
+                    {% for error in form.username.errors %}
+                        <span class="err_msg">{{ error }}</span>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td>密码</td>
+                <td class="inputs">
+                    {{ form.password(size=32) }}
+                    <br>
+                    {% for error in form.password.errors %}
+                        <span class="err_msg">{{ error }}</span>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td>确认密码</td>
+                <td class="inputs">
+                    {{ form.password2(size=32) }}
+                    <br>
+                    {% for error in form.password2.errors %}
+                        <span class="err_msg">{{ error }}</span>
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+        <div class="buttons">
+            {{ form.submit(id="reg_btn") }}
+        </div>
+        <br class="clear">
+    </form>
+</div>
+</body>
+</html>
